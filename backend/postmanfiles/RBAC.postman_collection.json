@@ -1,0 +1,521 @@
+{
+    "info": {
+        "name": "RBAC JWT + Refresh Token + 2FA API",
+        "_postman_id": "rbac-jwt-full-2fa",
+        "description": "Full RBAC system with JWT, refresh token, account lock, password reset, and 2FA flows for testing",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Register User",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"testuser@example.com\",\n  \"password\": \"Test@123\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/register",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "register"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Login User (Correct Password)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"Test@123\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Failed Login Attempt 1",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"WrongPass\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Failed Login Attempt 2",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"WrongPass\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Failed Login Attempt 3",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"WrongPass\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Failed Login Attempt 4",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"WrongPass\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Failed Login Attempt 5 (Lock Account)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"WrongPass\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Login After Lock (Should Fail)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"Test@123\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Enable 2FA",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/enable-2fa",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "enable-2fa"
+                    ]
+                },
+                "body": {}
+            },
+            "response": []
+        },
+        {
+            "name": "Verify 2FA",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"token\": \"{{otpToken}}\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/verify-2fa",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "verify-2fa"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Login 2FA",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"userId\": \"{{userId}}\",\n  \"token\": \"{{otpToken}}\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/login-2fa",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "login-2fa"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Current User",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/current",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "current"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get All Users (Admin only)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Update User",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"username\": \"updateduser\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/{{userId}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "{{userId}}"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete User (Admin only)",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/{{userId}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "{{userId}}"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Refresh Token",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/refresh",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "refresh"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Logout User",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/logout",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "logout"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Forgot Password",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"testuser@example.com\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/forgot-password",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "forgot-password"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Reset Password",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"password\": \"NewPass@123\"\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/reset-password/{{resetToken}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "reset-password",
+                        "{{resetToken}}"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:5001/api/users"
+        },
+        {
+            "key": "accessToken",
+            "value": ""
+        },
+        {
+            "key": "refreshToken",
+            "value": ""
+        },
+        {
+            "key": "userId",
+            "value": ""
+        },
+        {
+            "key": "otpToken",
+            "value": ""
+        }
+    ]
+}
