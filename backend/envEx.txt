@@ -1,9 +1,0 @@
-# Port
-PORT=5001
-
-# MongoDB Connection String
-CONNECTION_STRING=mongodb+srv://root:root@cluster0.u3fpkrt.mongodb.net/?appName=Cluster0
-
-# JWT Secret Key
-ACCESS_TOKEN_SECERT=my_secret_token
-1
