@@ -70,8 +70,8 @@ Before installing, ensure you have:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Saaait/Contact-Manager.git
-cd Contact-Manager
+git clone https://github.com/Saaait/Role-Based-Authentication-System.git
+cd backend
 ```
 
 2. Install backend dependencies:
