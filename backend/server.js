@@ -5,6 +5,13 @@ const connectDb = require("./config/dbConnection");
 const dotenv = require("dotenv").config();
 const seedAdmin = require("./seedAdmin");
 
+
+const { globalLimiter } = require("./middleware/rateLimiter");
+
+// Global limiter (optional)
+app.use(globalLimiter);
+
+
 connectDb().then(async () => {
     const app = express();
 

@@ -33,12 +33,17 @@ const {
 // Middleware
 const validateToken = require("../middleware/validateTokenHandler");
 
+// 
+const { loginLimiter,
+    forgotPasswordLimiter
+} = require("../middleware/rateLimiter");
+
 // Router
 const router = express.Router();
 
 // Public Routes
 router.post("/register", registerUser);
-router.post("/login", loginUser);
+router.post("/login", loginLimiter, loginUser);
 router.post("/refresh", refreshTokenHandler);
 router.post("/logout", logoutUser);
 
@@ -48,7 +53,7 @@ router.post("/verify-2fa", validateToken, verify2FA);
 router.post("/login-2fa", login2FA);
 
 // password reset
-router.post("/forgot-password", forgotPassword);
+router.post("/forgot-password", forgotPasswordLimiter, forgotPassword);
 router.post("/reset-password/:token", resetPassword);
 
 // Private Routes
